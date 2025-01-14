@@ -1,0 +1,4 @@
+Flask>=2.1.1
+boto3==1.20.24
+PyJWT==2.3.0
+Werkzeug>=2.1.0
