@@ -13,6 +13,10 @@ s3_client = boto3.client(
     aws_secret_access_key=MINIO_SECRET_KEY,
 )
 
+@app.route('/')
+def index():
+    return 'Welcome to the File Management API! Visit /upload to upload a file, /download/<file_id> to download a file, /update/<file_id> to update a file, and /delete/<file_id> to delete a file.'
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files['file']
