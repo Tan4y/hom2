@@ -10,7 +10,7 @@ services:
       - "9000:9000"
       - "9001:9001"
     volumes:
-      - minio-data:/data
+      - minio-data:/data  # This ensures MinIO's data is persisted.
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
@@ -21,6 +21,8 @@ services:
     command: start-dev
     ports:
       - "8080:8080"
+    volumes:
+      - ./keycloak/h2:/opt/keycloak/data/h2  # Persist Keycloak's database.
 
   app:
     build:
@@ -30,10 +32,11 @@ services:
     ports:
       - "5001:5000"
     volumes:
-      - ./src:/app
+      - ./src:/app  # Mounts the source code from the host for development
     depends_on:
       - minio
       - keycloak
 
 volumes:
-  minio-data:
+  minio-data:  # Volume for MinIO data persistence
+  keycloak-data:  # Volume for Keycloak data persistence
