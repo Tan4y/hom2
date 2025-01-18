@@ -1,4 +1,7 @@
 Flask>=2.1.1
+# boto3: The AWS SDK for Python to interact with AWS services such as S3 and MinIO
 boto3==1.20.24
+# PyJWT: A Python library for working with JSON Web Tokens (JWTs) for authentication
 PyJWT==2.3.0
+# Werkzeug: A WSGI utility library used by Flask for handling HTTP requests
 Werkzeug>=2.1.0

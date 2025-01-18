@@ -1,36 +1,36 @@
 services:
   minio:
-    image: minio/minio:latest
+    image: minio/minio:latest # Use the latest MinIO image
     container_name: minio
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
-    command: server /data --console-address ":9001"
+    command: server /data --console-address ":9001" # Start MinIO server with console address
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "9000:9000"  # Map port 9000 for the S3 API
+      - "9001:9001"  # Map port 9001 for the MinIO console
     volumes:
       - minio-data:/data  # This ensures MinIO's data is persisted.
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:latest # Use the latest Keycloak image
     container_name: keycloak
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    command: start-dev
+    command: start-dev # Start Keycloak in development mode
     ports:
-      - "8080:8080"
+      - "8080:8080" # Map port 8080 for the Keycloak admin console
     volumes:
       - ./keycloak/h2:/opt/keycloak/data/h2  # Persist Keycloak's database.
 
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: . # Build context set to the current directory
+      dockerfile: Dockerfile # Use the Dockerfile in the current directory
     container_name: file-management-app
     ports:
-      - "5001:5000"
+      - "5001:5000"  # Map port 5000 in the container to port 5001 on the host
     volumes:
       - ./src:/app  # Mounts the source code from the host for development
     depends_on:

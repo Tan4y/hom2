@@ -54,17 +54,32 @@
 
 ## Примерни заявки с cURL
 
+Генериранр на JWT:
+    curl -X POST \
+    "http://localhost:8080/realms/file-management/protocol/openid-connect/token" \
+    -d "client_id=file-client" \
+    -d "client_secret=<your-client-secret>" \
+    -d "grant_type=client_credentials"
+
 Качване на файл:
-    curl -X POST -F "file=@path_to_file" http://localhost:5000/upload
+    curl -X POST -F "file=@path/to/your/file.txt" \
+    -H "Authorization: Bearer <access_token>" \
+    http://localhost:5000/upload
 
 Сваляне на файл:
-    curl http://localhost:5000/download/{file_id} --output downloaded_file
+    curl -X GET \
+    -H "Authorization: Bearer <access_token>" \
+    http://localhost:5000/download/<file_id>
 
 Обновяване на файл:
-    curl -X PUT -F "file=@new_file" http://localhost:5000/update/{file_id}
+    curl -X PUT -F "file=@path/to/your/new_file.txt" \
+    -H "Authorization: Bearer <access_token>" \
+    http://localhost:5000/update/<file_id>
 
 Изтриване на файл:
-    curl -X DELETE http://localhost:5000/delete/{file_id}
+    curl -X DELETE \
+    -H "Authorization: Bearer <access_token>" \
+    http://localhost:5000/delete/<file_id>
 
 
 
