@@ -1,10 +1,10 @@
-MINIO_URL = "http://minio:9000"
+MINIO_URL = "http://localhost:9000"
 MINIO_ACCESS_KEY = "minioadmin"
 MINIO_SECRET_KEY = "minioadmin"
 MINIO_BUCKET = "file-storage"
 
 # Keycloak Configuration
-KEYCLOAK_URL = "http://keycloak:8080"
+KEYCLOAK_URL = "http://localhost:8080"
 REALM = "file-management"
 KEYCLOAK_CLIENT_ID = "file-client"
 KEYCLOAK_CLIENT_SECRET = "xwyK7plDqsqZ7dyfqee1PLqhLacWmfdh"

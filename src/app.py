@@ -15,6 +15,9 @@ s3_client = boto3.client(
     region_name="us-east-1"
 )
 
+buckets = s3_client.list_buckets()
+print("Buckets:", buckets)
+
 # JWT Authentication function (Keycloak)
 def validate_jwt(token):
     try:
@@ -112,4 +115,4 @@ def delete_file(file_id):
         return jsonify({"error": str(e)}), 404
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5002)
